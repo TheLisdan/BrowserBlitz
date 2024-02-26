@@ -1,15 +1,7 @@
-/* inter-500 - latin */
-@font-face {
-    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    src: url('../fonts/inter-v13-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
 html {
     box-sizing: border-box;
 }
+
 *, *:before, *:after {
     box-sizing: inherit;
 }
@@ -30,19 +22,56 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 34px 120px;
+    padding: 22px 101px 22px 105px;
     background-color: #65F406;
 }
 
 header nav ul {
     display: flex;
     align-items: center;
+    font-weight: 600;
 }
 
-header nav ul li {
-    margin-right: 90px;
+.header__left__nav-button {
+    margin-right: 72px;
 }
 
-header nav ul li:last-child {
+.header__left__nav-button a {
+    display: flex;
+    align-items: center;
+}
+
+.header__left__nav-button a img {
+    margin-right: 17px;
+}
+
+.header__left__nav-button:last-child {
     margin-right: 0;
+}
+
+.header__left {
+    display: flex;
+    align-items: center;
+}
+
+.header__left-logo {
+    margin-right: 191px;
+}
+
+.header__right {
+    display: flex;
+    font-size: 32px;
+}
+
+.header__right-login {
+    border: none;
+    background: none;
+    margin-right: 35px;
+}
+
+.header__right-registration {
+    background: none;
+    padding: 10px 21px;
+    border: 1px solid #212121;
+    border-radius: 0;
 }

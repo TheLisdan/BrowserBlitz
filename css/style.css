@@ -26,6 +26,10 @@ main {
     margin: 0 auto;
 }
 
+header, main, footer {
+    transition: all 0.3s;
+}
+
 section {
     background-color: #3A3A3A;
     border-radius: 10px;
@@ -55,6 +59,19 @@ header {
     padding: 16px 101px 16px 105px;
     background-color: #65F406;
     margin-bottom: 83px;
+    z-index: 100;
+}
+
+.blur {
+    filter: blur(5px);
+}
+
+.close-button {
+    position: absolute;
+    background: none;
+    border: none;
+    top: 30px;
+    right: 30px;
 }
 
 .header__wrapper {
@@ -116,6 +133,188 @@ header nav ul {
     border-radius: 0;
     font-weight: 600;
     border-radius: 10px;
+}
+
+.registration {
+    display: none;
+    position: relative;
+    opacity: 0;
+    transition: all 0.3s;
+    width: 765px;
+    position: fixed;
+    top: 5px;
+    left: 50%;
+    transform: translate(-50%);
+    overflow: auto;
+    flex-direction: column;
+    align-items: center;
+    background-color: #212121;
+    border-radius: 10px;
+    padding: 30px 70px 35px;
+    z-index: 100000;
+}
+
+.registration h1 {
+    font-weight: 700;
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.registration form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.registration input {
+    padding: 26px 30px;
+    margin-bottom: 56px;
+    border-radius: 10px;
+    border: 0;
+    color: #FFF;
+    background-color: #3A3A3A;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.registration__password__wrapper {
+    padding: 26px 25px 26px 30px;
+    margin-bottom: 60px;
+    height: 80px;
+}
+
+.registration input[type=submit] {
+    padding: 20px;
+    color: #000000;
+    margin-bottom: 0;
+    background-color: #65F406;
+    font-weight: 600;
+    font-size: 37px;
+}
+
+.registration__checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 20px;
+    font-weight: 300;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.registration__checkbox-wrapper p a {
+    font-weight: 700;
+}
+
+.registration__checkbox-wrapper input {
+    display: none;
+}
+
+.registration__checkbox-checkmark {
+    margin-right: 20px;
+    height: 37px;
+    width: 37px;
+    background-color: #3A3A3A;
+    border-radius: 10px;
+}
+
+.registration__checkbox-checkmark::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: url(../img/svg/check.svg) no-repeat center center;
+    background-size: contain;
+    display: none;
+}
+
+.registration__checkbox-wrapper 
+input[type=checkbox]:checked ~
+.registration__checkbox-checkmark::after {
+    display: block;
+}
+
+.login {
+    display: none;
+    position: relative;
+    opacity: 0;
+    transition: all 0.3s;
+    position: fixed;
+    top: 5px;
+    left: 50%;
+    transform: translate(-50%);
+    overflow: auto;
+    flex-direction: column;
+    align-items: center;
+    background-color: #212121;
+    border-radius: 10px;
+    padding: 30px 70px 35px;
+    z-index: 100000;
+    width: 765px;
+}
+
+.login h1 {
+    font-weight: 700;
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.login form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.login input {
+    padding: 29px 30px;
+    margin-bottom: 56px;
+    border-radius: 10px;
+    border: 0;
+    color: #FFF;
+    background-color: #3A3A3A;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.login input[type=submit] {
+    padding: 20px;
+    color: #000000;
+    margin-bottom: 0;
+    background-color: #65F406;
+    font-weight: 600;
+    font-size: 37px;
+}
+
+.login__password__wrapper input,
+.registration__password__wrapper input {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+}
+
+.login__password__wrapper {
+    padding: 29px 25px 29px 30px;
+    margin-bottom: 80px;
+    height: 86px;
+}
+
+.login__password__wrapper, 
+.registration__password__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #3A3A3A;
+    border-radius: 10px;
+}
+
+.login__password__wrapper img, 
+.registration__password__wrapper img {
+    cursor: pointer;
 }
 
 .popular {
@@ -226,13 +425,16 @@ header nav ul {
 }
 
 .genres ul {
+    flex-direction: column;
     align-self: flex-start;
-    list-style-type: disc;
-    margin-left: 20px;
 }
 
 .genres li {
+    display: inline-block;
     margin-bottom: 17px;
+    padding: 8px 14px;
+    background-color: #212121;
+    border-radius: 2px;
 }
 
 footer {

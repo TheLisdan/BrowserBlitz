@@ -6,13 +6,11 @@
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./fa/all.min.css">
     <title>BrowserBlitz</title>
     <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
     <link rel="apple-touch-icon" href="./img/webclip.png">
 </head>
 <body>
-    <script src="./fa/all.min.js"></script>
     <header>
         <div class="header__wrapper">
             <div class="header__left">
@@ -21,18 +19,89 @@
                 </a>
                 <nav>
                     <ul>
-                        <li class="header__left__nav-button"><a href="#"><img src="./img/svg/catalog.svg" alt="catalog">Каталог</a></li>
-                        <li class="header__left__nav-button"><a href="#"><img src="./img/svg/search.svg" alt="search">Поиск</a></li>
-                        <li class="header__left__nav-button"><a href="#"><img src="./img/svg/faq.svg" alt="faq">FAQ</a></li>
+                        <li class="header__left__nav-button">
+                            <a href="#">
+                                <img src="./img/svg/catalog.svg" alt="catalog">Каталог
+                            </a>
+                        </li>
+                        <li class="header__left__nav-button">
+                            <a href="#">
+                                <img src="./img/svg/search.svg" alt="search">Поиск
+                            </a>
+                        </li>
+                        <li class="header__left__nav-button">
+                            <a href="#">
+                                <img src="./img/svg/faq.svg" alt="faq">FAQ
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
             <div class="header__right">
-                <button class="header__right-login">Вход</button>
-                <button class="header__right-registration">Регистрация</button>
+                <button class="header__right-login"
+                onclick="show_login_form()">Вход</button>
+                <button class="header__right-registration"
+                onclick="show_registration_form()">Регистрация</button>
             </div>
         </div>
     </header>
+
+    <div class="registration" id="registration">
+        <h1>Регистрация</h1>
+        <button class="close-button" onclick="hide_registration_form()">
+            <img src="./img/svg/close.svg" alt="Close">
+        </button>
+        <form action="" method="post">
+            <input type="text"
+            name="registration__nickname" 
+            id="registration__nickname" 
+            required placeholder="Имя Пользователя">
+            <input type="email" 
+            name="registration__email" 
+            id="registration__email" 
+            required placeholder="Почта">
+            <div class="registration__password__wrapper">
+                <input type="password" 
+                name="registration__password" 
+                id="registration__password" 
+                required placeholder="Пароль">
+                <img src="./img/svg/eye-closed.svg" 
+                alt="Eye" 
+                id="registration__password-eye"
+                onclick="toggle_registration_password()">
+            </div>
+            <label class="registration__checkbox-wrapper">
+                <input type="checkbox">
+                <span class="registration__checkbox-checkmark"></span>
+                <p>Ознакомлен с <a href="#">Пользовательским Соглашением</a></p>
+            </label>
+            <input type="submit" value="ЗАРЕГИСТРИРОВАТЬСЯ">
+        </form>
+    </div>
+
+    <div class="login" id="login">
+        <h1>Вход</h1>
+        <button class="close-button" onclick="hide_login_form()">
+            <img src="./img/svg/close.svg" alt="Close">
+        </button>
+        <form action="" method="post">
+            <input type="email" 
+            name="login__email" 
+            id="login__email" 
+            required placeholder="Почта">
+            <div class="login__password__wrapper">
+                <input type="password"
+                name="login__password" 
+                id="login__password" 
+                required placeholder="Пароль">
+                <img src="./img/svg/eye-closed.svg" 
+                alt="Eye"
+                id="login__password-eye" 
+                onclick="toggle_login_password()">
+            </div>
+            <input type="submit" value="ВОЙТИ">
+        </form>
+    </div>
 
     <main>
         <section class="popular">
@@ -208,5 +277,101 @@
             <p>© 2024 <a href="https://thelisdan.github.io/BrowserBlitz/">BrowserBlitz</a>. All rights reserved</p>
         </div>
     </footer>
+
+    <script>
+        let registration_form = document.getElementById("registration");
+        let registration_password = document.getElementById("registration__password");
+        let registration_password_eye = document.getElementById("registration__password-eye");
+        let login_form = document.getElementById("login");
+        let login_password = document.getElementById("login__password");
+        let login_password_eye = document.getElementById("login__password-eye");
+
+        function toggle_registration_password() {
+            if (registration_password.type === "password") {
+                registration_password.type = "text";
+                registration_password_eye.src = "./img/svg/eye-opened.svg";
+            } else {
+                registration_password.type = "password";
+                registration_password_eye.src = "./img/svg/eye-closed.svg";
+            }
+        }
+
+        function toggle_login_password() {
+            if (login_password.type === "password") {
+                login_password.type = "text";
+                login_password_eye.src = "./img/svg/eye-opened.svg";
+            } else {
+                login_password.type = "password";
+                login_password_eye.src = "./img/svg/eye-closed.svg";
+            }
+        }
+
+        function toggle_blur() {
+            let blur_elements = [
+                document.getElementsByTagName("header")[0],
+                document.getElementsByTagName("main")[0],
+                document.getElementsByTagName("footer")[0]
+            ];
+            blur_elements.forEach(function(entry) {
+                entry.classList.toggle("blur");
+            })
+        }
+
+        function check_active_form() {
+            if (window.getComputedStyle(registration_form).display === "flex"
+            || window.getComputedStyle(login_form).display === "flex") {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        function show_registration_form() {
+            if (check_active_form()) {
+                return;
+            }
+            toggle_blur();
+            registration_form.style.display = "flex";
+            setTimeout(() => registration_form.style.opacity = "1", 1);
+            if (registration_password.type === "text") {
+                toggle_registration_password();
+            }
+        }
+
+        function show_login_form() {
+            if (check_active_form()) {
+                return;
+            }
+            toggle_blur();
+            login_form.style.display = "flex";
+            setTimeout(() => login_form.style.opacity = "1", 1);
+            if (login_password.type === "text") {
+                toggle_login_password();
+            }
+        }
+
+        function hide_registration_form() {
+            toggle_blur();
+            registration_form.style.opacity = "0";
+            setTimeout(() => registration_form.style.display = "none", 300);
+        }
+        
+        function hide_login_form() {
+            toggle_blur();
+            login_form.style.opacity = "0";
+            setTimeout(() => login_form.style.display = "none", 300);
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.code === "Escape") {
+                if (window.getComputedStyle(registration_form).display === "flex") {
+                    hide_registration_form();
+                } else if (window.getComputedStyle(login_form).display === "flex") {
+                    hide_login_form();
+                }
+            }
+        });
+    </script>
 </body>
 </html>

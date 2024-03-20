@@ -1,3 +1,6 @@
+<?php require_once __DIR__ . "/boot.php";
+echo var_export(check_auth(), true);?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -51,18 +54,18 @@
         <button class="close-button" onclick="hide_registration_form()">
             <img src="./img/svg/close.svg" alt="Close">
         </button>
-        <form action="" method="post">
+        <form action="./session/process_registration_form.php" method="post">
             <input type="text"
-            name="registration__nickname" 
+            name="nickname" 
             id="registration__nickname" 
             required placeholder="Имя Пользователя">
             <input type="email" 
-            name="registration__email" 
+            name="email" 
             id="registration__email" 
             required placeholder="Почта">
             <div class="registration__password__wrapper">
                 <input type="password" 
-                name="registration__password" 
+                name="password"
                 id="registration__password" 
                 required placeholder="Пароль">
                 <img src="./img/svg/eye-closed.svg" 
@@ -70,8 +73,11 @@
                 id="registration__password-eye"
                 onclick="toggle_registration_password()">
             </div>
+            <?php flash();?>
             <label class="registration__checkbox-wrapper">
-                <input type="checkbox">
+                <input type="checkbox"
+                name="checkbox"
+                value="check">
                 <span class="registration__checkbox-checkmark"></span>
                 <p>Ознакомлен с <a href="#">Пользовательским Соглашением</a></p>
             </label>
@@ -84,14 +90,14 @@
         <button class="close-button" onclick="hide_login_form()">
             <img src="./img/svg/close.svg" alt="Close">
         </button>
-        <form action="" method="post">
-            <input type="email" 
-            name="login__email" 
+        <form action="./session/process_login_form.php" method="post">
+            <input type="text" 
+            name="email" 
             id="login__email" 
-            required placeholder="Почта">
+            required placeholder="Логин">
             <div class="login__password__wrapper">
                 <input type="password"
-                name="login__password" 
+                name="password" 
                 id="login__password" 
                 required placeholder="Пароль">
                 <img src="./img/svg/eye-closed.svg" 
@@ -99,6 +105,7 @@
                 id="login__password-eye" 
                 onclick="toggle_login_password()">
             </div>
+            <?php flash();?>
             <input type="submit" value="ВОЙТИ">
         </form>
     </div>
